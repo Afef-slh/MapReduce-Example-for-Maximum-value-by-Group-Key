@@ -25,7 +25,7 @@
       <archive>
         <manifest>
           <addClasspath>true</addClasspath>
-          <mainClass>tn.isima.tp1.WordCount</mainClass>
+          <mainClass>tn.isima.exercice.Main</mainClass>
         </manifest>
       </archive>
       <descriptorRefs>
