@@ -14,10 +14,12 @@ public void reduce(Text key,Iterable<IntWritable> values,Context context) throws
     String keyWithMax="";
     for(IntWritable x : values){
         if(x.get()> max){
+            System.out.println("number of share "+x.get());
             max = x.get();
             outKey.set(keyWithMax);
         }
     }
+	System.out.println("max number of share "+ max );
     context.write(outKey, new IntWritable(max));
 }
 }
