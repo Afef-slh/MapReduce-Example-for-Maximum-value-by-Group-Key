@@ -16,6 +16,7 @@ public void reduce(Text key,Iterable<IntWritable> values,Context context) throws
     for(IntWritable x : values){
         max=Math.max(max, x.get());
     }
+    System.out.println("Nombre de Share="+max );
     context.write(key,new IntWritable(max));
 }
 }
