@@ -1,25 +1,21 @@
 package tn.isima.exercice;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;
 public class NumMaxReducer extends Reducer<Text, IntWritable, Text, IntWritable> {
-	private Text outKey= new Text();
+	ArrayList<Integer> List = new ArrayList<Integer>();
 
 
 public void reduce(Text key,Iterable<IntWritable> values,Context context) throws IOException, InterruptedException{
     int max = 0;
-    String keyWithMax="";
+   
     for(IntWritable x : values){
-        if(x.get()> max){
-            System.out.println("number of share "+x.get());
-            max = x.get();
-            outKey.set(keyWithMax);
-        }
+        max=Math.max(max, x.get());
     }
-	System.out.println("max number of share "+ max );
-    context.write(outKey, new IntWritable(max));
+    context.write(key,new IntWritable(max));
 }
 }
