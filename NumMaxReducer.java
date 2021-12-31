@@ -9,12 +9,12 @@ import org.apache.hadoop.mapreduce.Reducer;
 public class NumMaxReducer extends Reducer<Text, IntWritable, Text, IntWritable> {
 @Override
 public void reduce(Text key,Iterable<IntWritable> values,Context context) throws IOException, InterruptedException{
-    int max = 0;
+    int maximum = 0;
    
     for(IntWritable x : values){
-        max=Math.max(max, x.get());
+        maximum=Math.max(maximum, x.get());
     }
-    System.out.println("Nombre de Share="+max );
-    context.write(key,new IntWritable(max));
+    System.out.println("Nombre de Share="+maximum );
+    context.write(key,new IntWritable(maximum));
 }
 }
