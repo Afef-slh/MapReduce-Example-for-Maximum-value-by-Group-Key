@@ -1,35 +1,34 @@
 package tn.isima.exercice;
 import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
 
 import java.io.IOException;
 
 public  class TokenizerMapper
-extends Mapper<Object, Text, Text, IntWritable>{
+extends Mapper<LongWritable, Text, Text, IntWritable>{
 
 
-private Integer maxnum=0;
+private IntWritable Max= new IntWritable();
+
+private Text Key=new Text();
 
 
 
-
-
-public void map(Object key, Text value, Context context
+public void map(LongWritable key, Text value, Context context
              ) throws IOException, InterruptedException {
 	String line = value.toString();
 
 	String[] data=line.split("\t");
 	
+	Key.set(data[0]);
+	int maxshare= Integer.parseInt(data[9].trim());
+	Max.set(maxshare);
 	
-	
-	
-	if (null != data) {
-		maxnum=Integer.parseInt(data[9]);
-		context.write(new Text(data[0]), new IntWritable(maxnum));
-	}
-	System.out.println("author="+data[0]+"Nombre de Share="+ maxnum);
-	
+		
+	System.out.println("author="+Key+"Nombre de Share="+ Max);
+	context.write(Key,Max);
 		
 
 }
