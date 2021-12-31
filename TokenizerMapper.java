@@ -27,7 +27,7 @@ public void map(LongWritable key, Text value, Context context
 	Max.set(maxshare);
 	
 		
-	System.out.println("author="+Key+"Nombre de Share="+ Max);
+	System.out.println("author="+ data[0] +"Nombre de Share="+ maxshare);
 	context.write(Key,Max);
 		
 
