@@ -8,28 +8,24 @@ import java.io.IOException;
 
 public  class TokenizerMapper
 extends Mapper<LongWritable, Text, Text, IntWritable>{
-
-
-private IntWritable Max= new IntWritable();
-
-private Text Key=new Text();
-
-
-
+@Override
 public void map(LongWritable key, Text value, Context context
              ) throws IOException, InterruptedException {
 	String line = value.toString();
 
-	String[] data=line.split("\t");
-	
-	Key.set(data[0]);
-	int maxshare= Integer.parseInt(data[9].trim());
-	Max.set(maxshare);
+	String[] data=line.split(",");
+	try {
+		String influenceur = data[1];
+		int nbre_share = Integer.parseInt(data[9]);	
+		System.out.println("influenceur="+ influenceur +"Nombre de Share="+ nbre_share);
+		context.write(new Text(influenceur),new IntWritable(nbre_share));
+			
+	} catch(Exception e ) {
+		
+	}
 	
 		
-	System.out.println("author="+ data[0] +"Nombre de Share="+ maxshare);
-	context.write(Key,Max);
-		
+	
 
 }
 }
