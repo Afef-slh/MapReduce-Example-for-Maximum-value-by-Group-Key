@@ -15,7 +15,7 @@ String data = value.toString();
 String[] field = data.split(",", -1);
 double share = 0;
 if (null != field  && field[9].length() >0) {
-share=Double.parseDouble(field[7]);
+share=Double.parseDouble(field[9]);
 
 outTuple.setMax(share);
 
