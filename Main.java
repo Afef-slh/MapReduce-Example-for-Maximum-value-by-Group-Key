@@ -5,7 +5,7 @@ package tn.isima.exercice;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
-import org.apache.hadoop.io.IntWritable;
+
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
@@ -25,7 +25,7 @@ public class Main {
         job.setMapperClass(TokenizerMapper.class);
         job.setReducerClass(NumMaxReducer.class);
         job.setOutputKeyClass(Text.class);
-        job.setOutputValueClass(IntWritable.class);
+        job.setOutputValueClass(CustomMaxTuple.class);
         Path inputFilePath = new Path(args[0]);
         Path outputFilePath = new Path(args[1]);
         FileInputFormat.addInputPath(job, inputFilePath);
