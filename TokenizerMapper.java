@@ -16,7 +16,7 @@ public void map(LongWritable key, Text value, Context context
 	String[] data=line.split(",");
 	try {
 		String influenceur = data[0];
-		int nbre_share = Integer.parseInt(data[9]);	
+		int nbre_share = Integer.parseInt(data[10]);	
 		
 		context.write(new Text(influenceur),new IntWritable(nbre_share));
 			
